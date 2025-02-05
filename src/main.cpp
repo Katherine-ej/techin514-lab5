@@ -28,7 +28,7 @@ LegacyToken dbSecret(DATABASE_SECRET);
 // === Logic Parameters ===
 #define MOVEMENT_THRESHOLD 50.0  // Distance below this value is considered as "object detected"
 #define MEASURE_INTERVAL 5000    // Measure every 5 seconds
-#define DEEP_SLEEP_DURATION 60   // Deep sleep for 60 seconds (each wakeup cycle)
+#define DEEP_SLEEP_DURATION 30   // Deep sleep for 30 seconds (each wakeup cycle)
 #define SUSTAINED_THRESHOLD_DURATION 10000  // 10 seconds for sustained object presence below 50 cm
 #define CONTINUOUS_DETECTION_DURATION 20000 // 20 seconds for continuous object detection after sustained detection
 
@@ -98,12 +98,12 @@ void sendDataToFirebase(float distance) {
    disconnectWiFi();
 }
 
-// === Enter Deep Sleep and Set Wakeup Every 60 Seconds ===
+// === Enter Deep Sleep and Set Wakeup Every 30 Seconds ===
 void enterDeepSleep() {
    Serial.printf("Entering deep sleep for %d seconds...\n", DEEP_SLEEP_DURATION);
   
-   // Set timer to wake up after 60 seconds
-   esp_sleep_enable_timer_wakeup(DEEP_SLEEP_DURATION * 1000000ULL);  // 60 seconds
+   // Set timer to wake up after 30 seconds
+   esp_sleep_enable_timer_wakeup(DEEP_SLEEP_DURATION * 1000000ULL);  // 30 seconds
    esp_deep_sleep_start();
 }
 
